@@ -169,6 +169,10 @@
             font-size: 13px;
             border: none;
             cursor: pointer;
+            &:hover{
+              background-color: rgb(81, 60, 122)
+              
+            }
 
             @include tablet {
               position: absolute;
