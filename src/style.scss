@@ -77,7 +77,7 @@
       cursor: pointer;
 
       &:hover {
-        background-color: rgb(161, 161, 244);
+        background-color: black;
 
       }
     }
@@ -245,7 +245,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 10px;
-        color: lightgray;
+        color: rgb(255, 255, 255);
       }
 
       .chatIcons {
