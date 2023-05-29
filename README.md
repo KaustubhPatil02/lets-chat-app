@@ -3,12 +3,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 First Config the firebase.js file in /src/firebase
-npm install firebase
+### npm install firebase
 
 Create a firebase Project and enable Authentication, Storage , and Firestore Database 
 
 For this project we have used .SCSS so install sass
-npm install sass
+### npm install sass
 
 ## Available Scripts
 
