@@ -22,8 +22,9 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 To start the chats of the registered users you will have to start 2 development mode.
-ie.[http://localhost:3000] (http:localhost:3000) & [http://localhost:3000]
-(http:localhost:3001)
+ie. [http://localhost:3000](http://localhost:3000)
+&
+ [http://localhost:3001](http://localhost:3001) 
 
 You can also do this by hosting your website with a domain name.
 The page will reload when you make changes.\
