@@ -2,7 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+First Config the firebase.js file in /src/firebase
+npm install firebase
+
+Create a firebase Project and enable Authentication, Storage , and Firestore Database 
+
+For this project we have used .SCSS so install sass
+npm install sass
+
 ## Available Scripts
+
 
 In the project directory, you can run:
 
@@ -11,6 +20,10 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+To start the chats of the registered users you will have to start 2 development mode.
+ie. //localhost:3000 & //localhost:3001
+
+You can also do this by hosting your website with a domain name.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
