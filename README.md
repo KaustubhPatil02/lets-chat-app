@@ -3,7 +3,6 @@
 This project is a basic chat application built using React, SaSS, and Firebase. It provides users with a platform for real-time communication in a private setting. Leveraging Firebase's real-time database capabilities, users can seamlessly exchange messages with each other, creating a dynamic and interactive chatting experience.
 
 Features:
-```
 
 - Real-time Messaging: Instantaneous message delivery with Firebase's real-time database.
 - Private Chatrooms: Create secure chatrooms and invite others for exclusive conversations.
@@ -13,7 +12,7 @@ Features:
 - User Profiles: Customize display names and avatars for a personal touch.
 - Message History: Access previous messages even after refreshing or logging out.
 - Technologies Used: React for UI, SaSS for styling, and Firebase for real-time databases and authentication.
-```
+
 How to Use:
 ```
 Clone the repository to your local machine.
@@ -23,12 +22,12 @@ Run the application using npm start.
 Access the application in your web browser.
 ```
 Contributions:
-```
+
 Contributions are welcome! If you have any ideas for improvements, new features, or bug fixes, feel free to open an
 issue or submit a pull request.
 
 Feel free to customize this description to better fit your project's specific features and goals.
-```
+
 
 
 
