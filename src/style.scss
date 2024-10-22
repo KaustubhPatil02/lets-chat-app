@@ -1,5 +1,5 @@
 @mixin mobile {
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 580px) {
     @content;
   }
 }
@@ -107,15 +107,16 @@
 
 
 .home {
-  background-color: lightgray;
+  background-color: black;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  //background-image: url(https://images.unsplash.com/photo-1525351549016-1ddd272c8315?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);
+  width: 100%;
+  // background-image: url(https://images.unsplash.com/photo-1525351549016-1ddd272c8315?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);
 
   .container {
-    // border: 1px solid white;
+    border: 1px solid white;
     border-radius: 10px;
     width: 100%;
     height: 100%;
@@ -123,13 +124,116 @@
 
     // overflow: hidden;
     @include tablet {
-      width: 90%;
+      width: 100%;
     }
-
+    
     .sidebar {
       flex: 0.8;
       background-color: #3f3f46;
       position: relative;
+      transition: flex 0.3s ease, width 0.3s ease;
+      overflow: hidden ;
+      transition: all 0.3s ease;
+      
+      &.sidebar-collapsed {
+        flex: 0.1; /* Shrink the sidebar width */
+        width: 50px; /* Adjust to fit the collapsed state */
+        width: 0; /* Hide the sidebar when collapsed */
+        overflow: hidden; /* Hide the sidebar content when collapsed */
+        
+        /* Hide all content inside when collapsed */
+        .navbar .logo,
+        .userChatInfo span,
+        .userChatInfo p,
+        .searchForm input,
+        .navbar .user img,
+        .navbar .user button {
+          display: none; /* Hide content in collapsed state */
+        }
+    
+        /* Center the toggle button when collapsed */
+        .toggle-btn {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+    
+        /* Adjust user image size for collapsed state */
+        .userChat img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    
+      // .navbar {
+      //   display: flex;
+      //   align-items: center;
+      //   background-color: rgb(161, 161, 244);
+      //   height: 50px;
+      //   padding: 10px;
+      //   justify-content: space-between;
+      //   color: black;
+      //   font-weight: normal;
+    
+      //   .logo {
+      //     font-weight: bold;
+      //     font-size: 24px;
+      //     color: black;
+    
+      //     @include tablet {
+      //       display: none;
+      //     }
+    
+      //     @include laptop {
+      //       display: block;
+      //     }
+      //   }
+    
+      //   .toggle-btn {
+      //     cursor: pointer;
+      //     background-color: black;
+      //     color: white;
+      //     border: none;
+      //     padding: 5px 10px;
+      //     font-size: 16px;
+    
+      //     &:hover {
+      //       background-color: rgb(81, 60, 122);
+      //     }
+      //   }
+    
+      //   .user {
+      //     display: flex;
+      //     gap: 10px;
+    
+      //     img {
+      //       background-color: #ddddf7;
+      //       height: 24px;
+      //       width: 24px;
+      //       border-radius: 50%;
+      //       object-fit: cover;
+      //     }
+    
+      //     button {
+      //       background-color: black;
+      //       color: white;
+      //       font-size: 13px;
+      //       border: none;
+      //       cursor: pointer;
+    
+      //       &:hover {
+      //         background-color: rgb(81, 60, 122);
+      //       }
+    
+      //       @include tablet {
+      //         position: absolute;
+      //         bottom: 10px;
+      //       }
+      //     }
+      //   }
+      // }
+
 
       .navbar {
         display: flex;
@@ -140,21 +244,36 @@
         justify-content: space-between;
         color: black;
         font-weight: normal;
-
+      
         .logo {
           font-weight: bold;
           font-size: 24px;
           color: black;
-
+      
           @include tablet {
-            display: none;
+            display: none; // Hide logo on smaller devices
+          }
+      
+          @include laptop {
+            display: block;
           }
         }
-
+      
+        .hamburger-icon {
+          cursor: pointer;
+          display: block; // Always display on small screens
+          font-size: 24px; // Adjust size as needed
+          color: black;
+      
+          @include laptop {
+            display: none; // Hide on larger devices
+          }
+        }
+      
         .user {
           display: flex;
           gap: 10px;
-
+      
           img {
             background-color: #ddddf7;
             height: 24px;
@@ -162,18 +281,18 @@
             border-radius: 50%;
             object-fit: cover;
           }
-
+      
           button {
             background-color: black;
             color: white;
             font-size: 13px;
             border: none;
             cursor: pointer;
-            &:hover{
-              background-color: rgb(81, 60, 122)
-              
+      
+            &:hover {
+              background-color: rgb(81, 60, 122);
             }
-
+      
             @include tablet {
               position: absolute;
               bottom: 10px;
@@ -181,19 +300,21 @@
           }
         }
       }
+      
 
+      
       .search {
         border-bottom: 1px solid white;
-
+    
         .searchForm {
           padding: 10px;
-
+    
           input {
             background-color: transparent;
             border: none;
             color: white;
             outline: none;
-
+    
             &::placeholder {
               color: white;
               font-size: 16px;
@@ -201,7 +322,7 @@
           }
         }
       }
-
+    
       .userChat {
         padding: 10px;
         display: flex;
@@ -209,24 +330,24 @@
         gap: 10px;
         color: white;
         cursor: pointer;
-
+    
         &:hover {
           background-color: rgb(161, 161, 244);
         }
-
+    
         img {
           width: 50px;
           height: 50px;
           border-radius: 50%;
           object-fit: cover;
         }
-
+    
         .userChatInfo {
           span {
             font-size: 18px;
             font-weight: 500;
           }
-
+    
           p {
             font-size: 14px;
             color: white;
@@ -234,9 +355,11 @@
         }
       }
     }
+    
 
-    .chat {
+   .chat {
       flex: 2;
+      overflow: hidden;
 
       .chatInfo {
         height: 50px;
@@ -263,6 +386,8 @@
         padding: 10px;
         height: calc(100% - 160px);
         overflow: scroll;
+        // overflow-y: hidden; // Prevent vertical scrollbar
+        // overflow-x: hidden;
 
         .message {
           display: flex;
