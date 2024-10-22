@@ -30,8 +30,12 @@ REACT_APP_FIREBASE_STORAGE_BUCKET=
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
 REACT_APP_FIREBASE_APP_ID=
 ```
-Contributions:
+## What I learned?
+1. How to use SCSS.
+2. Learned Firebase basics
+3. Learned basis of react, as it is one of my first projects where I used ReactJs
 
+## Contributions:
 Contributions are welcome! If you have any ideas for improvements, new features, or bug fixes, feel free to open an
 issue or submit a pull request.
 
