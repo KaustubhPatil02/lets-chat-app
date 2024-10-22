@@ -1,25 +1,10 @@
-import React from 'react'
-import { useState } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { Link, useNavigate, } from 'react-router-dom'
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 
 const Login = () => {
-
-  //   const signOut = async ()=>{
-  //     try {
-  //      await signOut(auth).then(() => {
-  //        Navigate('/login')
-  //        // Sign-out successful.
-  //      });
-
-  //     } catch (err) {
-  //       setErr(true);      
-  //     }
-  //  };
-
-
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const [err, setErr] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -29,40 +14,28 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      Navigate("/")
-      console.log("log in success")
+      navigate("/");
+      console.log("Log in success");
     } catch (err) {
-      setErr(err);
+      setErr(true);
     }
-
-
-
   };
-
-
-
-
-
 
   return (
     <div className='formContainer'>
-
       <div className="formWrapper">
         <span className="logo">Let's Chat</span>
         <span className="title">Login</span>
         <form onSubmit={handleSubmit}>
-          <input type="email" placeholder='Enter email' />
-          <input type="password" placeholder='Enter password' />
-
-          <button>Login</button>
-          {err && <span>user not found! please enter proper gmail with password</span>}
-
+          <input type="email" placeholder='Enter email' required />
+          <input type="password" placeholder='Enter password' required />
+          <button type="submit">Login</button>
+          {err && <span className="errorMessage">User not found! Please enter a valid email and password.</span>}
         </form>
-        <p> Don't have an account <Link to="/register">Register here!</Link></p>
-        {/* <p>Don't have an account Register Here!</p> */}
+        <p> Don't have an account? <Link to="/register">Register here!</Link></p>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
