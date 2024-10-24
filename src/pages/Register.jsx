@@ -85,14 +85,13 @@
 
 // export default Register
 
-
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { setDoc, doc } from 'firebase/firestore';
-import Add from "../img/addAvatar.png"
-import { auth, storage, db } from "../firebase.js"
+import Add from "../img/addAvatar.png";
+import { auth, storage, db } from "../firebase.js";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -106,7 +105,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     if (!file) {
-      console.log("No file found!")
+      console.log("No file found!");
     }
 
     e.preventDefault();
@@ -130,16 +129,37 @@ const Register = () => {
             email,
             photoURL: downloadURL,
           });
-           await setDoc(doc(db, "userChats", res.user.uid), {});
+          await setDoc(doc(db, "userChats", res.user.uid), {});
           navigate("/");
 
-          console.log("Sign up successful")
-
-
-
+          console.log("Sign up successful");
         });
-      }
-      );
+      });
+    } catch (err) {
+      setErr(true);
+      console.log(err);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const res = await signInWithPopup(auth, provider);
+      const user = res.user;
+      const displayName = user.displayName;
+      const email = user.email;
+      const photoURL = user.photoURL;
+
+      await setDoc(doc(db, 'users', user.uid), {
+        uid: user.uid,
+        displayName,
+        email,
+        photoURL,
+      });
+      await setDoc(doc(db, "userChats", user.uid), {});
+      navigate("/");
+
+      console.log("Google Sign-In successful");
     } catch (err) {
       setErr(true);
       console.log(err);
@@ -163,7 +183,8 @@ const Register = () => {
           <button>Register</button>
           {err && <span>Something went wrong!... Please check the fields</span>}
         </form>
-        <p>Already have an account?  <Link to="/login">Login here!</Link> </p>
+        <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+        <p>Already have an account? <Link to="/login">Login here!</Link></p>
       </div>
     </div>
   );

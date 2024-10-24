@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 
@@ -21,6 +21,19 @@ const Login = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      navigate("/");
+      console.log("Google Sign-In successful");
+    } catch (err) {
+      setErr(true);
+      console.log(err);
+    }
+  };
+
+
   return (
     <div className='formContainer'>
       <div className="formWrapper">
@@ -32,6 +45,7 @@ const Login = () => {
           <button type="submit">Login</button>
           {err && <span className="errorMessage">User not found! Please enter a valid email and password.</span>}
         </form>
+        <button onClick={handleGoogleSignIn}>Login with Google</button>
         <p> Don't have an account? <Link to="/register">Register here!</Link></p>
       </div>
     </div>
